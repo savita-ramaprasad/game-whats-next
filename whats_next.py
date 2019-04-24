@@ -131,15 +131,3 @@ You can re-start by pressing R/r. \n \n \n
 
 if __name__ == "__main__":
     main()
-
-# def play_or_quit(self):
-#         """ Quit or play again after the game is over. """
-        
-#         print("To quit, press Q/q and then hit enter. Press any other key to play again.")
-#         user_input = input()
-#         if user_input == 'Q' or user_input == 'q':
-#             quit()
-#         else:
-#             start_game()
-
-
