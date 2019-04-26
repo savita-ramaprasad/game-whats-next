@@ -21,10 +21,10 @@ def start_game():
     else:
         seq = Power()
 
-    num_terms_to_display = 4
+    #num_terms_to_display = 4
     
-    print("First %d terms of the sequence:"%(num_terms_to_display))
-    for num in range(1, num_terms_to_display + 1):
+    print("First %d terms of the sequence:"%(NUM_TERMS_TO_DISPLAY))
+    for num in range(1, NUM_TERMS_TO_DISPLAY + 1):
         print(seq.nth_term(num))
     
     return seq
@@ -51,13 +51,13 @@ def play_game(seq):
                 try:
                     user_input = int(user_input)
                     if seq.verify_ans(int(user_input)) == 1:
-                        end_msg(points)
+                        EOG_msg(points)
                         user_input =input()
-                        restart_or_quit(user_input)
+                        EOG(user_input)
                     else:
-                        end_msg(-1)
+                        EOG_msg(-1)
                         user_input = input()
-                        restart_or_quit(user_input)
+                        EOG(user_input)
                     break
                 except ValueError:
                     print("Please hit enter or enter an integer")
@@ -74,9 +74,9 @@ def play_game(seq):
             print("You have %d points" % (points))
 
     if points == 0:
-        end_msg(points)
+        EOG_msg(points)
         user_input = input()
-        restart_or_quit(user_input)
+        EOG(user_input)
 
 
 def restart_or_quit(user_input):
@@ -92,7 +92,7 @@ def restart_or_quit(user_input):
         play_game(seq)
 
 
-def end_msg(points):
+def EOG_msg(points):
     """ Print appropriate msg when game ends.
     
         Args: 
@@ -106,6 +106,16 @@ def end_msg(points):
         print("Game over!")
 
     print("Press Q/q and enter to quit. Press R/r and enter to play again")
+
+def EOG(user_input):
+    """ Quit if Q/q or restart if anything else. """
+
+    if user_input == 'Q' or user_input == 'q':
+        quit()
+    else:
+        seq = start_game()
+        play_game(seq)
+
             
 def main():
 

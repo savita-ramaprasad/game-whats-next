@@ -1,5 +1,5 @@
 from numpy import random
-
+NUM_TERMS_TO_DISPLAY = 4
 
 class Sequence():
     """Methods that verify answer for any sequence. """
@@ -27,11 +27,11 @@ class ClosedFormSeq(Sequence):
 
 
 class RecursiveSeq(Sequence):
-    """Methods for sequences which have a recursive formula for the nth term."""
+    """Methods for sequences which use a recursive formula for the nth term."""
 
     def next_term(self):
-        l = len(self.cache)
-        return self.nth_term(l + 1)
+        len_cache = len(self.cache)
+        return self.nth_term(len_cache + 1)
 
     def term_count(self):
         return len(self.cache)
@@ -50,7 +50,7 @@ class ArithmSeq(ClosedFormSeq):
     def __init__(self):
         self.a = random.randint(-9, 3)
         self.d = random.randint(6, 9)
-        self.count = 4
+        self.count = NUM_TERMS_TO_DISPLAY
 
     def nth_term(self, n):
         return self.a + (n - 1) * self.d
@@ -69,7 +69,7 @@ class GeomSeq(ClosedFormSeq):
     def __init__(self):
         self.a = random.choice([3, 4])
         self.x = random.choice([2, 3])
-        self.count = 4
+        self.count = NUM_TERMS_TO_DISPLAY
 
     def nth_term(self, n):
         return self.a * (self.x**n)
@@ -86,7 +86,7 @@ class Power(ClosedFormSeq):
 
     def __init__(self):
         self.x = random.choice([2, 3, 5])
-        self.count = 4
+        self.count = NUM_TERMS_TO_DISPLAY
 
     def nth_term(self, n):
         return n**self.x
@@ -104,11 +104,11 @@ class Fibonacci(RecursiveSeq):
         self.cache = [0, 1]
 
     def nth_term(self, n):
-        l = len(self.cache)
-        if l >= n:
+        len_cache = len(self.cache)
+        if len_cache >= n:
             return self.cache[n - 1]
         else:
-            for i in range(l, n):
+            for i in range(len_cache, n):
                 self.cache.append(self.cache[i - 2] + self.cache[i - 1])
             return self.cache[n - 1]
 
@@ -125,11 +125,11 @@ class Triangle(RecursiveSeq):
         self.cache = [1, 3]
 
     def nth_term(self, n):
-        l = len(self.cache)
-        if l >= n:
+        len_cache = len(self.cache)
+        if len_cache >= n:
             return self.cache[n - 1]
         else:
-            for i in range(l, n):
+            for i in range(len_cache, n):
                 self.cache.append(self.cache[i - 1] + i + 1)
             return self.cache[n - 1]
             
